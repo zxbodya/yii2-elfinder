@@ -3,7 +3,7 @@
 class ServerFileInput extends CInputWidget
 {
     public $settings = array();
-    public $connectorRoute = 'admin/elfinder/connector'; //false
+    public $connectorRoute = false;
     private $assetsDir;
 
     public function init()
