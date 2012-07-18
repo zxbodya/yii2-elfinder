@@ -75,17 +75,19 @@ class ServerFileInput extends CInputWidget
         $(\'#\'+aFieldId).attr(\'value\',url);
         }';
         $settings['closeOnEditorCallback'] = true;
-        $connectorUrl = $this->settings['url'];
+        $connectorUrl = CJavaScript::encode($this->settings['url']);
         $settings = CJavaScript::encode($settings);
         $script = <<<EOD
-        window.elfinderBrowse = function(field_id) {
+        window.elfinderBrowse = function(field_id, connector) {
             var aFieldId = field_id, aWin = this;
             if($("#elFinderBrowser").length == 0) {
                 $("body").append($("<div/>").attr("id", "elFinderBrowser"));
-                $("#elFinderBrowser").elfinder($settings);
+                var settings = $settings;
+                settings["url"] = connector;
+                $("#elFinderBrowser").elfinder(settings);
             }
             else {
-                $("#elFinderBrowser").elfinder("open","$connectorUrl");
+                $("#elFinderBrowser").elfinder("open", connector);
             }
         }
 EOD;
@@ -93,7 +95,8 @@ EOD;
         $cs->registerScript('ServerFileInput#global', $script);
 
         $js = //'$("#'.$id.'").focus(function(){window.elfinderBrowse("'.$name.'")});'.
-            '$("#' . $id . 'browse").click(function(){window.elfinderBrowse("' . $id . '")});';
+            '$("#' . $id . 'browse").click(function(){window.elfinderBrowse("' . $id . '", '.$connectorUrl.')});';
+
 
         $cs->registerScript('ServerFileInput#' . $id, $js);
     }
