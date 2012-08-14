@@ -321,7 +321,7 @@ class elFinder {
 				if (isset($this->_commands['archive'])) {
 					$this->_result['params']['archives'] = $this->_options['archiveMimes'];
 				}
-				if (isset($this->_commands['extract'])) {
+				if (isset($this->_commands['extract']) && count($this->_options['archivers']) > 0) {
 					$this->_result['params']['extract'] = array_keys($this->_options['archivers']['extract']);
 				}
 			}
