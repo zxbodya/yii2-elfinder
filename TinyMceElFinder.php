@@ -5,7 +5,7 @@ Yii::import('ext.tinymce.*');
 class TinyMceElFinder extends TinyMceFileManager
 {
     public $settings = array();
-    public $connectorRoute =false;
+    public $connectorRoute = false;
     private $assetsDir;
 
     private $_id;
@@ -29,7 +29,11 @@ class TinyMceElFinder extends TinyMceFileManager
         $cs->registerCssFile($this->assetsDir . '/css/elfinder.css');
 
         // elFinder JS
-        $cs->registerScriptFile($this->assetsDir . '/js/elfinder.min.js');
+        if (defined('YII_DEBUG')) {
+            $cs->registerScriptFile($this->assetsDir . '/js/elfinder.full.js');
+        } else {
+            $cs->registerScriptFile($this->assetsDir . '/js/elfinder.min.js');
+        }
         // elFinder translation
         $cs->registerScriptFile($this->assetsDir . '/js/i18n/elfinder.ru.js');
 
