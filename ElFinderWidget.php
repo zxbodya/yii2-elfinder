@@ -37,7 +37,11 @@ class ElFinderWidget extends CWidget
         $cs->registerCssFile($this->assetsDir . '/css/elfinder.css');
 
         // elFinder JS
-        $cs->registerScriptFile($this->assetsDir . '/js/elfinder.min.js');
+        if (defined('YII_DEBUG')) {
+            $cs->registerScriptFile($this->assetsDir . '/js/elfinder.full.js');
+        } else {
+            $cs->registerScriptFile($this->assetsDir . '/js/elfinder.min.js');
+        }
         // elFinder translation
         $cs->registerScriptFile($this->assetsDir . '/js/i18n/elfinder.ru.js');
 
