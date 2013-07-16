@@ -1,6 +1,5 @@
 <?php
 
-Yii::import('ext.tinymce.*');
 
 class TinyMceElFinder extends TinyMceFileManager
 {
