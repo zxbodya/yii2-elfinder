@@ -19,8 +19,8 @@ class TinyMceElFinder extends TinyMceFileManager
         if (Yii::app()->getRequest()->enableCsrfValidation) {
             $csrfTokenName = Yii::app()->request->csrfTokenName;
             $csrfToken = Yii::app()->request->csrfToken;
-            Yii::app()->clientScript->registerMetaTag($csrfToken, 'csrf-token');
-            Yii::app()->clientScript->registerMetaTag($csrfTokenName, 'csrf-param');
+            Yii::app()->clientScript->registerMetaTag($csrfToken, 'csrf-token', null, array(),'csrf-token');
+            Yii::app()->clientScript->registerMetaTag($csrfTokenName, 'csrf-param', null, array(), 'csrf-param');
         }
 
         // jQuery and jQuery UI
