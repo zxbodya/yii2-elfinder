@@ -16,7 +16,7 @@ class TinyMceElFinder extends TinyMceFileManager
         $this->assetsDir = Yii::app()->assetManager->publish($dir);
         $cs = Yii::app()->getClientScript();
 
-        if(Yii::app()->getRequest()->enableCsrfValidation){
+        if (Yii::app()->getRequest()->enableCsrfValidation) {
             $csrfTokenName = Yii::app()->request->csrfTokenName;
             $csrfToken = Yii::app()->request->csrfToken;
             Yii::app()->clientScript->registerMetaTag($csrfToken, 'csrf-token');
@@ -87,14 +87,14 @@ class TinyMceElFinder extends TinyMceFileManager
             'title' => "Files",
         );
         $settings['editorCallback'] = 'js:function(url) {
-                        aWin.document.forms[0].elements[aFieldName].value = url;
+                        aWin.document.getElementById(field_name).value = url;
                         if (type == "image" && aFieldName=="src" && aWin.ImageDialog.showPreviewImage)
                             aWin.ImageDialog.showPreviewImage(url);
                     }';
         $settings['closeOnEditorCallback'] = true;
 
         $settings = CJavaScript::encode($settings);
-        $script=<<<JS
+        $script = <<<JS
         function(field_name, url, type, win) {
             var aFieldName = field_name, aWin = win;
             var el = $("#$id");
