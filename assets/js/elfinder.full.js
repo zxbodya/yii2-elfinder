@@ -1,4 +1,44 @@
-(function($) {
+(function($){
+  "use strict";
+  // Jquery compatibility fix from: https://github.com/jquery/jquery-migrate
+  // required to support jquery 1.9+
+
+  // Don't clobber any existing jQuery.browser in case it's different
+  if ( !jQuery.browser ) {
+    var uaMatch = function( ua ) {
+      ua = ua.toLowerCase();
+
+      var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
+        /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
+        /(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
+        /(msie) ([\w.]+)/.exec( ua ) ||
+        ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
+        [];
+
+      return {
+        browser: match[ 1 ] || "",
+        version: match[ 2 ] || "0"
+      };
+    };
+
+    var matched = uaMatch( navigator.userAgent );
+    var browser = {};
+
+    if ( matched.browser ) {
+      browser[ matched.browser ] = true;
+      browser.version = matched.version;
+    }
+
+    // Chrome is Webkit, but Webkit is also Safari.
+    if ( browser.chrome ) {
+      browser.webkit = true;
+    } else if ( browser.webkit ) {
+      browser.safari = true;
+    }
+
+    $.browser = browser;
+  }
+}(jQuery));(function($) {
 
 	/**
 	 * @class  File manager (main controller)
@@ -2041,7 +2081,8 @@ elFinder.prototype.ui.prototype.commands = {
 						buttons     : {
 							Cancel : function() { $(this).dialog('close'); },
 							Ok     : function() {
-								if (!$(':file[value]', f).length) {
+
+                if (!$(':file', f).val()) {
 									return error(self.fm.i18n('Select at least one file to upload'));
 								}
 								setTimeout(function() {
@@ -2976,9 +3017,9 @@ elFinder.prototype.eventsManager = function(fm, el) {
 			}
 		});
 
-		$('input,textarea').live('focus', function(e) {
+		$('input,textarea').on('focus', function(e) {
 			self.lock = true;
-		}).live('blur', function(e) {
+		}).on('blur', function(e) {
 			self.lock = false;
 		});
 

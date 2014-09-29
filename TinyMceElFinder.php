@@ -102,6 +102,8 @@ class TinyMceElFinder extends TinyMceFileManager
                 el = $("<div/>").attr("id", "$id");
                 $("body").append(el);
                 el.elfinder($settings);
+                //place it above tinymce dialogue
+                el[0].elfinder.dialog.closest('.ui-dialog').css({'z-index':4000001});
             }
             else {
                 el.elfinder("open","$connectorUrl");
