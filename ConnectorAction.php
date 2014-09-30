@@ -1,6 +1,9 @@
 <?php
+namespace zxbodya\yii2\elfinder;
 
-class ElFinderConnectorAction extends CAction
+use yii\base\Action;
+
+class ConnectorAction extends Action
 {
     /**
      * @var array
@@ -10,8 +13,8 @@ class ElFinderConnectorAction extends CAction
     public function run()
     {
         require_once(dirname(__FILE__) . '/php/elFinder.class.php');
-        $fm = new elFinder($this->settings);
+        $fm = new \elFinder($this->settings);
         $fm->run();
-
     }
+
 }
