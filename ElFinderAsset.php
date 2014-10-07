@@ -3,12 +3,7 @@
 namespace zxbodya\yii2\elfinder;
 
 use Yii;
-use yii\helpers\Html;
-use yii\helpers\Json;
-use yii\helpers\Url;
 use yii\web\AssetBundle;
-use yii\web\View;
-use yii\widgets\InputWidget;
 
 /**
  * This is just an example.
@@ -24,13 +19,7 @@ class ElFinderAsset extends AssetBundle
         'css/elfinder.css'
     ];
     public $depends = [
-        'yii\web\JqueryAsset',
-        'yii\jui\CoreAsset',
-        'yii\jui\DialogAsset',
-        'yii\jui\SelectableAsset',
-        'yii\jui\DroppableAsset',
-        'yii\jui\ThemeAsset',
-
+        'yii\jui\JuiAsset',
     ];
 
     public function init()
