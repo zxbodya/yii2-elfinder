@@ -41,7 +41,13 @@ class ElFinderInput extends InputWidget
         $contoptions = $this->options;
         $contoptions['id'] = $this->options['id'] . 'container';
         echo Html::beginTag('div', $contoptions);
-        $inputOptions = array('id' => $this->options['id'], 'style' => 'float:left;' /*, 'readonly' => 'readonly'*/);
+        if (isset($this->options['inputOptions'])){
+            $inputOptions = $this->options['inputOptions'];   
+        } else {
+            $inputOptions = array();   
+        }
+        $inputOptions['id'] = $this->options['id'];
+        $inputOptions['style'] = isset($inputOptions['style']) ? $inputOptions['style']: 'float:left;';
         if ($this->hasModel()) {
             echo Html::activeTextInput($this->model, $this->attribute, $inputOptions);
         } else {
