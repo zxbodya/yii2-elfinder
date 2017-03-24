@@ -25,13 +25,11 @@ class ElFinderWidget extends Widget
         }
         $this->settings['url'] = Url::toRoute($this->connectorRoute);
         $lang = Yii::$app->language;
-        
+
         if (strpos($lang, '-')) {
-                $lang = substr($lang, 0, strpos($lang, '-'));
-            } else {
-                $lang = 'en';
-            }
-        
+            $lang = substr($lang, 0, strpos($lang, '-'));
+        }
+
         $this->settings['lang'] = $lang;
     }
 
