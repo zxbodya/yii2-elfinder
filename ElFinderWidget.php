@@ -24,7 +24,13 @@ class ElFinderWidget extends Widget
             throw new Exception('$connectorRoute must be set!');
         }
         $this->settings['url'] = Url::toRoute($this->connectorRoute);
-        $this->settings['lang'] = Yii::$app->language;
+        $lang = Yii::$app->language;
+
+        if (strpos($lang, '-')) {
+            $lang = substr($lang, 0, strpos($lang, '-'));
+        }
+
+        $this->settings['lang'] = $lang;
     }
 
     public function run()
