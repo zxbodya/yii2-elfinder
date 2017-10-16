@@ -6,7 +6,7 @@
  */
 (function($) {
 	if (elFinder && elFinder.prototype.options && elFinder.prototype.options.i18n)
-		elFinder.prototype.options.i18n.fa_ir = {
+		elFinder.prototype.options.i18n.fa = {
 			/* errors */
 			'Root directory does not exists'        : 'پوشه ریشه وجود ندارد',
 			'Unable to connect to backend'          : 'مشکل در ارتباط با سرور',
