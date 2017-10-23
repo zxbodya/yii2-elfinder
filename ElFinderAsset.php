@@ -41,6 +41,7 @@ class ElFinderAsset extends AssetBundle
             'es',
             'no',
             'vi',
+            'fa',
             'fr',
             'pl',
             'zh_CN',
